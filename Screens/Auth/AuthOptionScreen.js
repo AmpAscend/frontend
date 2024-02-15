@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text, TouchableOpacity, Dimensions} from 'react-native';
 import { dynamicStyles, styles } from '../../AppStyles';
 const { width } = Dimensions.get("window");
 
 const AuthOptionScreen = () => {
   const dynamicStyle = dynamicStyles();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -18,10 +20,10 @@ const AuthOptionScreen = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { width: width * 0.8 }]}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity onPress={()=> navigation.navigate('Login')} style={[styles.button, { width: width * 0.8 }]}>
+          <Text style={styles.buttonText} >Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { width: width * 0.8 }]}>
+        <TouchableOpacity onPress={()=> navigation.navigate('Register')} style={[styles.button, { width: width * 0.8 }]}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
