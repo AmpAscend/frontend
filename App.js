@@ -2,18 +2,18 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import AuthOptionsScreen from "./screens/Auth/AuthOptionsScreen"; // Import the new screen
-import HomeScreen from "./screens/HomeScreen";
-import FavoritesScreen from "./screens/Favorites/FavoritesScreen";
-import VehiclesScreen from "./screens/Vehicles/VehiclesScreen";
-import MapsScreen from "./screens/Maps/MapsScreen";
-import HomesScreen from "./screens/Homes/HomesScreen";
+import AuthOptionsScreen from "./Screens/Auth/AuthOptionsScreen"; 
+import HomeScreen from "./Screens/HomeScreen";
+import FavoritesScreen from "./Screens/Favorites/FavoritesScreen";
+import VehiclesScreen from "./Screens/Vehicles/VehiclesScreen";
+import MapsScreen from "./Screens/Maps/MapsScreen";
+import HomesScreen from "./Screens/Homes/HomesScreen";
 import SettingsScreen from "./screens/Settings/SettingsScreen";
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator(); // Add stack navigator for authentication flow
+const Stack = createStackNavigator(); 
 
-// Stack navigator for authentication flow
+
 const AuthStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="AuthOptions" component={AuthOptionsScreen} />
