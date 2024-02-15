@@ -18,6 +18,8 @@ const Tab = createBottomTabNavigator();
 const AuthStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="AuthOptions" component={AuthOptionsScreen} options={{headerShown: false}} />
+    <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+    <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}} />
   </Stack.Navigator>
 );
 
@@ -32,7 +34,7 @@ const MainStack = () => (
 );
 
 export default function App() {
-  const isLoggedIn = false; // change to flase to get auth pages 
+  const isLoggedIn = false; // change to false to get auth pages; true for home page
 
   // Todo : auth logic here
 

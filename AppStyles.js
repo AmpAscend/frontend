@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "80%",
     resizeMode: "contain",
+    marginBottom: -20,
   },
   buttonContainer: {
     paddingTop: height * 0.05,
@@ -44,16 +45,17 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#d3d3d3",
-    padding: height * 0.02,
-    borderRadius: height * 0.03,
-    marginBottom: height * 0.01,
+    width: "80%",
+    height: 50,
+    borderRadius: 12,
+    marginBottom: 15,
     justifyContent: "center",
     alignItems: "center",
   },
   buttonText: {
     color: "#3F3F3F",
     fontWeight: "500",
-    fontSize: height * 0.02,
+    fontSize: "16%",
   },
   footerText1: {
     position: "absolute",
@@ -73,6 +75,15 @@ export const styles = StyleSheet.create({
   },
     footerTextBold: {
         fontWeight: "bold",
+    },
+    input: {
+      width: '80%',
+      height: 50,
+      borderColor: 'gray',
+      borderRadius: 12,
+      borderWidth: 1,
+      marginBottom: 20,
+      paddingHorizontal: 10,
     },
 });
 export const dynamicStyles = () => {
