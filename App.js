@@ -1,36 +1,38 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
-import { styles, dynamicStyles } from "./AppStyles";
-const { width } = Dimensions.get("window");
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import AuthOptionsScreen from "./screens/Auth/AuthOptionsScreen"; // Import the new screen
+import HomeScreen from "./screens/HomeScreen";
+import FavoritesScreen from "./screens/Favorites/FavoritesScreen";
+import VehiclesScreen from "./screens/Vehicles/VehiclesScreen";
+import MapsScreen from "./screens/Maps/MapsScreen";
+import HomesScreen from "./screens/Homes/HomesScreen";
+import SettingsScreen from "./screens/Settings/SettingsScreen";
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator(); // Add stack navigator for authentication flow
+
+// Stack navigator for authentication flow
+const AuthStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="AuthOptions" component={AuthOptionsScreen} />
+    <Stack.Screen name="Login" component={LoginScreen} />
+    <Stack.Screen name="Register" component={RegisterScreen} />
+  </Stack.Navigator>
+);
 
 export default function App() {
-  const dynamicStyle = dynamicStyles();
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcomeText}>Welcome to</Text>
-      <Text style={styles.brandName}>AmpAscend</Text>
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          resizeMode="contain"
-          source={require("./assets/logo.png")}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { width: width * 0.8 }]}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { width: width * 0.8 }]}>
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={dynamicStyle.footerContainer}>
-        <Text style={styles.footerText1}>For your</Text>
-        <Text style={[styles.footerText2, styles.footerTextBold]}>
-          everything electric
-        </Text>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Favorites" component={FavoritesScreen} />
+        <Tab.Screen name="Vehicles" component={VehiclesScreen} />
+        <Tab.Screen name="Maps" component={MapsScreen} />
+        <Tab.Screen name="Homes" component={HomesScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
