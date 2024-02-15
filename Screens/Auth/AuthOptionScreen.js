@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
-import { styles, dynamicStyles } from "./AppStyles";
+import React from 'react';
+import { View, Image, Text, TouchableOpacity, Dimensions} from 'react-native';
+import { dynamicStyles, styles } from '../../AppStyles';
 const { width } = Dimensions.get("window");
 
-export default function AuthOptionScreen() {
+const AuthOptionScreen = () => {
   const dynamicStyle = dynamicStyles();
 
   return (
@@ -14,7 +14,7 @@ export default function AuthOptionScreen() {
         <Image
           style={styles.logo}
           resizeMode="contain"
-          source={require("./assets/logo.png")}
+          source={require("../../assets/logo.png")}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -34,3 +34,5 @@ export default function AuthOptionScreen() {
     </View>
   );
 }
+
+export default AuthOptionScreen;
