@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, AccessibilityActionEvent } from 'react-native';
 
 const AddHomeScreen = ({ route, navigation }) => {
   const [home, setHome] = useState('');
