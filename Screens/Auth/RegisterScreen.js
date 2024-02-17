@@ -11,7 +11,7 @@ const RegisterScreen = () => {
         if(password !== confirmPassword){
             setError('Passwords do not match');
             return;
-        }
+        } 
         setError('')
         // Todo : Regestration logic
         console.log('Email:', email);
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: "#3F3F3F",
         fontWeight: "500",
-        fontSize: "16%",
+        fontSize: 18,
     },
     errorText:{
         color: "red",
