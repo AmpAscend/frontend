@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: "#3F3F3F",
     fontWeight: "500",
-    fontSize: "16%",
+    fontSize: 18,
   },
   footerText1: {
     position: "absolute",

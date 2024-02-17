@@ -1,0 +1,14 @@
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const UserScreen = () => {
+  return (
+    <View>
+      <Text>User Screen</Text>
+      {/* Add your user content here */}
+    </View>
+  );
+};
+
+export default UserScreen;
