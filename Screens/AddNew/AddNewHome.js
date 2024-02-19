@@ -1,23 +1,51 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, AccessibilityActionEvent } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import {Picker} from '@react-native-picker/picker'
 
-const AddHomeScreen = ({ route, navigation }) => {
-  const [home, setHome] = useState('');
+const AddHomeScreen = ({ navigation }) => {
+  const [home, setHome] = useState({
+    name : "",
+    provider : "",
+    numberOfPanels: 0
+  });
 
   const handleAddHome = () => {
-    if (home.trim() !== '') {
-      navigation.navigate('Favorites', {newHome: home})
+
+    if (home.name.trim() !== '') {
+      navigation.navigate('Favorites', { newHome: home });
+      navigation.navigate('Homes', { newHome: home });
     }
   };
+  
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Home Name:</Text>
+      <Text style={styles.label}>Home name:</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter home name"
-        value={home}
-        onChangeText={(text) => setHome(text)}
+        value={home.name}
+        onChangeText={(text) => setHome({...home, name: text})}
+      />
+      
+      <Text style={styles.label}>Select provider:</Text>
+      <Picker
+        style={styles.picker}
+        selectedValue={home.provider}
+        onValueChange={(itemValue, itemIndex) => setHome({...home, provider : itemValue})}
+      >
+        <Picker.Item label="1" value="Tata Power Solar" />
+        <Picker.Item label="2" value="Adani Solar" />
+        <Picker.Item label="3" value="Servotech Power Systems" />
+      </Picker>
+
+      <Text style={styles.label}>Number of panels:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter home name"
+        value={home.numberOfPanels.toString()}
+        onChangeText={(text) => setHome({...home, numberOfPanels : parseInt(text)})}
+        keyboardType='numeric'
       />
       <Button title="Add Home" onPress={handleAddHome} />
     </View>
@@ -26,6 +54,7 @@ const AddHomeScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 60,
     flex: 1,
     padding: 20,
   },
@@ -39,6 +68,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
+  },
+  picker: {
+    height: 20, // Set a fixed height for the Picker
+    borderColor: 'gray',
+    marginBottom: 10,
   },
 });
 
