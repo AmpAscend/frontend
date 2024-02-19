@@ -15,8 +15,8 @@ const FavoritesScreen = ({ route }) => {
     setVehicles([...vehicles, newVehicle]);
   };
 
-  const addHome = (home) => {
-    setHomes([...homes, home]);
+  const addHome = (newHome) => {
+    setHomes([...homes, newHome]);
   };
 
   useEffect(() => {
