@@ -11,14 +11,13 @@ const FavoritesScreen = ({ route }) => {
   const [vehicles, setVehicles] = useState([]);
   const [homes, setHomes] = useState([]);
 
-  // Function to add a new vehicle
   const addVehicle = (newVehicle) => {
     setVehicles([...vehicles, newVehicle]);
   };
 
-  const addHome = (newHome)=>{
-    setHomes([...homes, newHome])
-  }
+  const addHome = (home) => {
+    setHomes([...homes, home]);
+  };
 
   useEffect(() => {
     if (route.params && route.params.newVehicle) {
@@ -31,16 +30,23 @@ const FavoritesScreen = ({ route }) => {
       addHome(route.params.newHome);
     }
   }, [route.params]);
+  
 
   return (
     <>
       <TopBar pageTitle="Favorites" />
+
       <View style={styles.container}>
+        {/* Vehicles */}
         <View style={styles.section}>
           <Text style={styles.heading}>Vehicles</Text>
-          <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AddVehicle')}>
+          {/* add button */}
+          <TouchableOpacity 
+            style={styles.addButton} 
+            onPress={() => navigation.navigate('AddVehicle')}>
           <FontAwesomeIcon icon={faSquarePlus} size={28}></FontAwesomeIcon>
 
+          {/* vehicles list */}
           </TouchableOpacity>
           {vehicles.map((vehicle, index) => (
             <TouchableOpacity
@@ -48,23 +54,36 @@ const FavoritesScreen = ({ route }) => {
               style={styles.card}
               onPress={() => navigation.navigate('VehicleDetails', { vehicle })}
             >
-              <Text>{vehicle}</Text>
+              <Text>{vehicle.name}</Text>
+              <Text>{vehicle.make}</Text>
+              <Text>{vehicle.model}</Text>
+
             </TouchableOpacity>
           ))}
         </View>
+
+        {/* Homes */}
         <View style = {styles.section}>
             <Text style = {styles.heading}>Homes</Text>
-            <TouchableOpacity TouchableOpacity style = {styles.addButton} onPress={()=> navigation.navigate('AddHome')}>
+            {/* add button */}
+            <TouchableOpacity 
+              style = {styles.addButton} 
+              onPress={()=> navigation.navigate('AddHome')}
+            >
               <FontAwesomeIcon icon={faSquarePlus} size={28}></FontAwesomeIcon>
             </TouchableOpacity>
 
-
-          
+            {/* Homes list */}
           {homes.map((home,index)=>(
             <TouchableOpacity key={index} 
-            style={styles.card} 
-            onPress={() => navigation.navigate('HomeDetails', {home})}>
-              <Text>{home}</Text>
+              style={styles.card} 
+              onPress={() => navigation.navigate('HomeDetails', {home})}
+              >
+              <Text style = {styles.cardHeading}>{home.name}</Text>
+              <Text style = {styles.cardContent}>{home.provider}</Text> 
+              {/* add home api content here instead */}
+              <Text style = {styles.cardContent}>{home.numberOfPanels}</Text>
+
             </TouchableOpacity>
           ))}
         </View>
@@ -90,6 +109,10 @@ const styles = StyleSheet.create({
     fontSize: 34,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  cardHeading:{
+    fontSize: 16,
+
   },
   addButton: {
     position: 'absolute',

@@ -5,17 +5,16 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AuthOptionsScreen from "./Screens/Auth/AuthOptionScreen.js";
 import RegisterScreen from "./Screens/Auth/RegisterScreen.js";
 import LoginScreen from "./Screens/Auth/LoginScreen.js";
-
 import FavoritesScreen from "./Screens/Favorites/FavoritesScreen";
 import VehiclesScreen from "./Screens/Vehicles/VehiclesScreen";
 import MapsScreen from "./Screens/Maps/MapsScreen";
 import HomesScreen from "./Screens/Homes/HomesScreen";
-import SettingsScreen from "./Screens/Settings/SettingsScreen.js";
 import UserScreen from "./Screens/User/UserScreen.js";
 import NotificationsScreen from "./Screens/Notifications/NotificationsScreen.js";
-import TopBar from "./Components/TopBar.js";
 import AddVehicleScreen from "./Screens/AddNew/AddNewVehicle.js";
 import AddHomeScreen from "./Screens/AddNew/AddNewHome.js";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCab } from "@fortawesome/free-solid-svg-icons";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,11 +29,10 @@ const AuthStack = () => (
 
 const MainStack = () => (
   <Tab.Navigator>
-    <Tab.Screen name="Favorites"  component={FavoritesScreen} options={{ headerShown: false }} />
+    <Tab.Screen name="Favorites"  component={FavoritesScreen} options={{ headerShown: false, tabBarIcon: ()=> {<FontAwesomeIcon icon={faCab} size={20} color="black"/>}}} />
     <Tab.Screen name="Vehicles" component={VehiclesScreen} options={{ headerShown: false }} />
-    <Tab.Screen name="Maps" component={MapsScreen} options={{ headerShown: false }} />
     <Tab.Screen name="Homes" component={HomesScreen} options={{ headerShown: false }} />
-    <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
+    <Tab.Screen name="Maps" component={MapsScreen} options={{ headerShown: false }} />
   </Tab.Navigator>
 );
 
