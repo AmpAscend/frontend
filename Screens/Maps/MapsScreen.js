@@ -4,7 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import TopBar from '../../Components/TopBar';
 
-const MapsPage = () => {
+const MapsScreen = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [nearestStation, setNearestStation] = useState(null);
 
@@ -25,7 +25,7 @@ const MapsPage = () => {
     })();
 
     // Get nearest charging station
-    fetchNearestStation();
+    // fetchNearestStation();
   }, []);
 
   const fetchNearestStation = async () => {
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapsPage;
+export default MapsScreen;
