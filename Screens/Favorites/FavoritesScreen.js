@@ -4,6 +4,7 @@ import TopBar from '../../Components/TopBar';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSquarePlus } from '@fortawesome/free-regular-svg-icons';
+import { color } from 'react-native-elements/dist/helpers';
 
 const FavoritesScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -42,9 +43,9 @@ const FavoritesScreen = ({ route }) => {
           <Text style={styles.heading}>Vehicles</Text>
           {/* add button */}
           <TouchableOpacity 
-            style={styles.addButton} 
+            style={styles.addButtonContainer} 
             onPress={() => navigation.navigate('AddVehicle')}>
-          <FontAwesomeIcon icon={faSquarePlus} size={28}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faSquarePlus} size={28} style={styles.addButton}></FontAwesomeIcon>
 
           {/* vehicles list */}
           </TouchableOpacity>
@@ -67,10 +68,10 @@ const FavoritesScreen = ({ route }) => {
             <Text style = {styles.heading}>Homes</Text>
             {/* add button */}
             <TouchableOpacity 
-              style = {styles.addButton} 
+              style = {styles.addButtonContainer} 
               onPress={()=> navigation.navigate('AddHome')}
             >
-              <FontAwesomeIcon icon={faSquarePlus} size={28}></FontAwesomeIcon>
+              <FontAwesomeIcon icon={faSquarePlus} size={28} style={styles.addButton}></FontAwesomeIcon>
             </TouchableOpacity>
 
             {/* Homes list */}
@@ -103,8 +104,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   section: {
-    marginBottom: 20,
-  },
+    marginBottom: 30,
+
+   },
   heading: {
     fontSize: 34,
     fontWeight: 'bold',
@@ -114,18 +116,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
 
   },
-  addButton: {
+  addButtonContainer: {
     position: 'absolute',
     top: 0,
     right: 0,
     padding: 10,
   },
+  addButton: {
+    color : "black",
+  },
   addButtonText: {
-    color: 'blue',
     fontWeight: 'bold',
   },
   card: {
-    backgroundColor: '#f0f0f0',
+    borderWidth: 1,
+    borderRadius:20, 
+    borderColor: 'black',
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
