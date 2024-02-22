@@ -36,8 +36,8 @@ const TopBar = ({ pageTitle }) => {
       if (reverseGeocode && reverseGeocode.length > 0) {
         const { city } = reverseGeocode[0];
         setLocationName(city);
-        sendLocationDataToBackend(location.coords.latitude, location.coords.longitude, city);
-        navigateToMapsPage()
+        // sendLocationDataToBackend(location.coords.latitude, location.coords.longitude, city);
+
       } else {
         setLocationName("Unknown Location");
       }
@@ -50,9 +50,6 @@ const TopBar = ({ pageTitle }) => {
 
     }, [route.name])
 
-    const navigateToMapsPage = () => {
-      navigation.navigate('MapsPage', { currentLocation });
-    };
     
     // send location data to backend
     const sendLocationDataToBackend = (latitude, longitude, city) => {

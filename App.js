@@ -14,7 +14,7 @@ import NotificationsScreen from "./Screens/Notifications/NotificationsScreen.js"
 import AddVehicleScreen from "./Screens/AddNew/AddNewVehicle.js";
 import AddHomeScreen from "./Screens/AddNew/AddNewHome.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCab, faCar, faHouse, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import { faCar, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faMap } from "@fortawesome/free-regular-svg-icons";
 
 const Stack = createStackNavigator();
