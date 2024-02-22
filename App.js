@@ -52,7 +52,7 @@ const MainTabs = () => (
 );
 
 export default function App() {
-  const isLoggedIn = true; // change to false to get auth pages; true for home page
+  const isLoggedIn = false; // change to false to get auth pages; true for home page
 
   // Todo : auth logic here
 
