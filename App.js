@@ -14,7 +14,8 @@ import NotificationsScreen from "./Screens/Notifications/NotificationsScreen.js"
 import AddVehicleScreen from "./Screens/AddNew/AddNewVehicle.js";
 import AddHomeScreen from "./Screens/AddNew/AddNewHome.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCab } from "@fortawesome/free-solid-svg-icons";
+import { faCab, faCar, faHouse, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faMap } from "@fortawesome/free-regular-svg-icons";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,11 +29,25 @@ const AuthStack = () => (
 );
 
 const MainStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Main"
+      component={MainTabs}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="AddVehicle" component={AddVehicleScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="AddHome" component={AddHomeScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="Notifications" component={NotificationsScreen} options={{ headerShown: false }} />
+  </Stack.Navigator>
+);
+
+const MainTabs = () => (
   <Tab.Navigator>
-    <Tab.Screen name="Favorites"  component={FavoritesScreen} options={{ headerShown: false, tabBarIcon: ()=> {<FontAwesomeIcon icon={faCab} size={20} color="black"/>}}} />
-    <Tab.Screen name="Vehicles" component={VehiclesScreen} options={{ headerShown: false }} />
-    <Tab.Screen name="Homes" component={HomesScreen} options={{ headerShown: false }} />
-    <Tab.Screen name="Maps" component={MapsScreen} options={{ headerShown: false }} />
+    <Tab.Screen name="Favorites" component={FavoritesScreen} options={{ headerShown: false, tabBarIcon: () => <FontAwesomeIcon icon={faHeart} size={22} color="black" /> }} />
+    <Tab.Screen name="Vehicles" component={VehiclesScreen} options={{ headerShown: false, tabBarIcon: () => <FontAwesomeIcon icon={faCar} size={22} color="black" /> }} />
+    <Tab.Screen name="Homes" component={HomesScreen} options={{ headerShown: false, tabBarIcon: () => <FontAwesomeIcon icon={faHouseChimney} size={22} color="black" />}} />
+    <Tab.Screen name="Maps" component={MapsScreen} options={{ headerShown: false, tabBarIcon: () => <FontAwesomeIcon icon={faMap} size={22} color="black" /> }} />
   </Tab.Navigator>
 );
 
@@ -43,13 +58,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <Stack.Navigator>
-        <Stack.Screen name="Main" component={MainStack} options={{ headerShown: false }} />
-        <Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
-        <Stack.Screen name = "AddVehicle" component={AddVehicleScreen} options={{headerShown:false}}/>
-        <Stack.Screen name = "AddHome" component={AddHomeScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="Notifications" component={NotificationsScreen} options={{ headerShown: false }} />
-      </Stack.Navigator> : <AuthStack />}
+      {isLoggedIn ? <MainStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }
