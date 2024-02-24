@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from 'react'
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   TextInput,
@@ -11,23 +12,45 @@ import {
 const { width, height } = Dimensions.get("window");
 
 const RegisterScreen = () => {
+  const navigation = useNavigation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleRegister = () => {
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
+  const handleSignup = async () => {
+    console.log(name, email, password);
+    if (!email || !password || !name || !confirmPassword) {
+      setError("All fields are required");
       return;
     }
-    setError("");
-    // Todo : Regestration logic
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // Todo : call backend api to register user
+    if (password !== confirmPassword) {
+      setError("Password and Confirm Password must be the same");
+      return;
+    }
+    setLoading(true);
+    try {
+      fetch("http://192.168.1.35:3000/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+      const data = await response.json();
+      setLoading(false);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        alert("Account Created Successfully");
+        navigation.navigate("Login");
+      }
+    } catch (err) {
+      setLoading(false);
+      setError("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -36,32 +59,36 @@ const RegisterScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Name"
-        onChangeText={(text) => setName(text)}
         value={name}
+        onPressIn={() => setError("")}
+        onChangeText={setName}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
-        onChangeText={(text) => setEmail(text)}
+        onPressIn={() => setError("")}
         value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
-        onChangeText={(text) => setPassword(text)}
+        onPressIn={() => setError("")}
+        onChangeText={setPassword}
         value={password}
         secureTextEntry={true}
       />
       <TextInput
         style={styles.input}
         placeholder="Retype Password"
-        onChangeText={(text) => setConfirmPassword(text)}
+        onPressIn={() => setError(null)}
+        onChangeText={setConfirmPassword}
         value={confirmPassword}
         secureTextEntry={true}
       />
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+      <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
@@ -121,7 +148,9 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "red",
-    marginBottom: 20,
+    alignSelf: "flex-start",
+    marginLeft: width * 0.1,
+    marginBottom: 10,
   },
 });
 

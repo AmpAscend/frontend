@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   TextInput,
@@ -7,23 +9,53 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  Alert,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const token = await AsyncStorage.getItem("token");
+      if (token) {
+        navigation.navigate("MainStack");
+      }
+
+    };
+    checkLoginStatus();
+  }, [navigation]);
+
   const handleLogin = async () => {
-    setError("");
-    // try {
-    //   const data = await authService.login(email, password);
-    //   console.log("Login successful:", data);
-    //   navigation.navigate("Home");
-    // } catch (error) {
-    //   setError(error.message);
-    // }
+    console.log(email, password);
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+    try {
+      const response = await fetch("http://192.168.1.35:3000/api/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.error) {
+        setError(data.error);
+      } else {
+        await AsyncStorage.setItem("token", data.toString());
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again later.");
+    }
   };
   return (
     <View style={styles.container}>
@@ -31,14 +63,16 @@ const LoginScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        onChangeText={(text) => setEmail(text)}
+        onPressIn={() => setError("")}
         value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
-        onChangeText={(text) => setPassword(text)}
         value={password}
+        onPressIn={() => setError("")}
+        onChangeText={setPassword}
         secureTextEntry={true}
       />
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
@@ -104,6 +138,8 @@ const styles = StyleSheet.create({
   errorText: {
     color: "red",
     marginBottom: 20,
+    alignSelf: "flex-start",
+    marginLeft: width * 0.1,
   },
 });
 
