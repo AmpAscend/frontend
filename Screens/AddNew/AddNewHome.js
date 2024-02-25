@@ -6,7 +6,10 @@ const AddHomeScreen = ({ navigation }) => {
   const [home, setHome] = useState({
     name : "",
     provider : "",
-    numberOfPanels: 0
+    numberOfPanels: 0,
+    realTimeUsage: "",
+    solarProduction: "",
+    savings: "",
   });
 
   const handleAddHome = () => {
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   picker: {
-    height: 20, // Set a fixed height for the Picker
+    height: 100, // Set a fixed height for the Picker
     borderColor: 'gray',
     marginBottom: 10,
   },

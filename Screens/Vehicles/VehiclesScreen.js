@@ -7,8 +7,16 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCar } from "@fortawesome/free-solid-svg-icons";
 const VehicleCard = ({ vehicle, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
-    <FontAwesomeIcon icon={faCar} size={20} color="#333" style={styles.icon} />
-    <Text style={styles.nameText}>{`${vehicle.name}'s Car`}</Text>
+    <View style={styles.cardContent}>
+      <FontAwesomeIcon icon={faCar} size={20} color="#333" style={styles.icon} />
+      <Text style={styles.nameText}>{`${vehicle.name}'s Car`}</Text>
+    </View>
+
+    {/* Container for placeholder props */}
+    <View style={styles.placeholderContainer}>
+      <Text style={styles.placeholderText}>Charge: {vehicle.charge || "Placeholder"}</Text>
+      <Text style={styles.placeholderText}>Last Charged: {vehicle.lastCharged || "Placeholder"}</Text>
+    </View>
   </TouchableOpacity>
 );
 
@@ -17,7 +25,18 @@ const VehiclesScreen = ({ route}) => {
   const navigation = useNavigation();
 
   const addVehicle = (newVehicle) => {
+    //adding placeholder values 
+    newVehicle.charge = Math.floor(Math.random() * 100) + "%"; 
+    newVehicle.lastCharged = getRandomDate(new Date()).toLocaleDateString(); 
+    newVehicle.lastUsed = getRandomDate(new Date()).toLocaleDateString();
     setVehicles((prevVehicles) => [...prevVehicles, newVehicle]);
+  };
+
+  const getRandomDate = (startDate, endDate = new Date()) => {
+    const diff = endDate.getTime() - startDate.getTime();
+    const randomTime = Math.floor(Math.random() * diff);
+    const randomDate = new Date(startDate.getTime() + randomTime);
+    return randomDate;
   };
 
   useEffect(() => {
@@ -85,11 +104,13 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#f0f0f0",
-    padding: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 25,
     borderRadius: 10,
     marginBottom: 10,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: "column",
+    alignItems: "start",
+
   },
   icon: {
     marginRight: 10,
@@ -99,6 +120,17 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#4D4D4D",
   },
+  cardContent: {
+    flexDirection: "row", // Wrap name and icon horizontally
+    alignItems: "center", // Align name and icon vertically
+  },
+  placeholderContainer: {
+    marginTop: 10, // Add margin for spacin
+    flexDirection: "column", // Stack placeholder props vertically
+  },
+  placeholderText: {
+    marginVertical: 5,
+  }
 });
 
 export default VehiclesScreen;
