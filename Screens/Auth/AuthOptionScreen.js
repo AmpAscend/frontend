@@ -30,7 +30,7 @@ const AuthOptionScreen = () => {
       <View style={dynamicStyle.footerContainer}>
         <Text style={styles.footerText1}>For your</Text>
         <Text style={[styles.footerText2, styles.footerTextBold]}>
-          everything electric
+          everything green
         </Text>
       </View>
     </View>
