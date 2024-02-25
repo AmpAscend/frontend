@@ -23,9 +23,9 @@ const LoginScreen = () => {
     const checkLoginStatus = async () => {
       const token = await AsyncStorage.getItem("token");
       if (token) {
-        navigation.navigate("MainStack");
+        //navigation.navigate("MainStack");
+        Alert.alert("You are already logged in");
       }
-
     };
     checkLoginStatus();
   }, [navigation]);
@@ -51,7 +51,8 @@ const LoginScreen = () => {
       if (data.error) {
         setError(data.error);
       } else {
-        await AsyncStorage.setItem("token", data.toString());
+        await AsyncStorage.setItem("token", data.token);
+        Alert.alert("You are now logged in");
       }
     } catch (err) {
       setError("An error occurred. Please try again later.");

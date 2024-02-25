@@ -35,7 +35,7 @@ const UserScreen = () => {
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem("token");
-      navigation.navigate("AuthStack");
+      //navigation.navigate("AuthStack");
     } catch (error) {
       console.error("Error logging out:", error);
     }

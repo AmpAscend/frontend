@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   View,
@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  Alert,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
 
@@ -38,15 +39,23 @@ const RegisterScreen = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, password }),
-      });
-      const data = await response.json();
-      setLoading(false);
-      if (data.error) {
-        setError(data.error);
-      } else {
-        alert("Account Created Successfully");
-        navigation.navigate("Login");
-      }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.error) {
+            setError(data.error);
+          } else {
+            Alert.alert("You are now signed up");
+            //navigation.navigate("Login");
+          }
+        })
+        .catch((err) => {
+          setError("An error occurred. Please try again later.");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     } catch (err) {
       setLoading(false);
       setError("An error occurred. Please try again later.");
