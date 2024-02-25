@@ -25,15 +25,15 @@ const HomeCard = ({ home, onPress }) => (
 
 
 const HomesScreen = ({ route}) => {
-  const [homes, sethomes] = useState([]);
+  const [homes, setHomes] = useState([]);
   const navigation = useNavigation();
 
-  const addhome = (newhome) => {
+  const addHome = (newHome) => {
     //adding placeholder values 
-    newhome.realTimeUsage = Math.floor(Math.random() * 100) + "%"; 
-    newhome.solarProduction = getRandomDate(new Date()).toLocaleDateString(); 
-    newhome.savings = getRandomDate(new Date()).toLocaleDateString();
-    sethomes((prevhomes) => [...prevhomes, newhome]);
+    newHome.realTimeUsage = Math.floor(Math.random() * 100) + "%"; 
+  newHome.solarProduction = getRandomDate(new Date()).toLocaleDateString(); 
+  newHome.savings = getRandomDate(new Date()).toLocaleDateString();
+  setHomes((prevHomes) => [...prevHomes, newHome]);
   };
 
   const getRandomDate = (startDate, endDate = new Date()) => {
@@ -44,15 +44,15 @@ const HomesScreen = ({ route}) => {
   };
 
   useEffect(() => {
-    sethomes([]);
-    if (route.params && route.params.newhome) {
-      addhome(route.params.newhome);
+    setHomes([]);
+    if (route.params && route.params.newHome) {
+      addHome(route.params.newHome);
     }
   }, [route.params]);
 
   return (
     <>
-      <TopBar pageTitle="homes" />
+      <TopBar pageTitle="Homes" />
       <View
         style={[
           styles.container,
@@ -63,7 +63,7 @@ const HomesScreen = ({ route}) => {
           <Text style={styles.text}>No homes added</Text>
         ) : (
           homes.map((home, index) => (
-            <homeCard
+            <HomeCard
               key={index}
               home={home}
               // onPress={() => navigation.navigate("homeDetails", { home })}
@@ -71,11 +71,13 @@ const HomesScreen = ({ route}) => {
           ))
         )}
       </View>
+      {console.log(homes)}
+
 
       {/* Floating Action Button */}
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => navigation.navigate("Addhome")}
+        onPress={() => navigation.navigate("AddHome")}
       >
         <FontAwesomeIcon icon={faPlus} size={28} />
       </TouchableOpacity>
