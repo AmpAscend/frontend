@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text, TouchableOpacity, Dimensions} from 'react-native';
 import { dynamicStyles, styles } from '../../AppStyles';
