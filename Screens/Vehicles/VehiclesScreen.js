@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TopBar from '../../Components/TopBar';
 
-const VehiclesScreen = ({ route }) => {
+const VehiclesScreen = ({ route}) => {
   const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {

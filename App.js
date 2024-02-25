@@ -16,6 +16,7 @@ import AddHomeScreen from "./Screens/AddNew/AddNewHome.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCar, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faMap } from "@fortawesome/free-regular-svg-icons";
+import VehicleDetailsScreen from "./Screens/DetailsPage/VehicleDetailsScreen.js";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,6 +40,7 @@ const MainStack = () => (
     <Stack.Screen name="AddVehicle" component={AddVehicleScreen} options={{ headerShown: false }} />
     <Stack.Screen name="AddHome" component={AddHomeScreen} options={{ headerShown: false }} />
     <Stack.Screen name="Notifications" component={NotificationsScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="VehicleDetails" component={VehicleDetailsScreen} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 

@@ -6,9 +6,6 @@ import { faBell, faUser } from '@fortawesome/free-regular-svg-icons';
 import * as Location from 'expo-location';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
-
-
-
 const TopBar = ({ pageTitle }) => {
     const navigation = useNavigation();
     const route = useRoute();
@@ -27,7 +24,7 @@ const TopBar = ({ pageTitle }) => {
         // get coordinates
         const location = await Location.getCurrentPositionAsync({});
         setCurrentLocation(location.coords);
-        // Reverse geocode current location
+        // Reverse geocode 
       const reverseGeocode = await Location.reverseGeocodeAsync({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
@@ -37,7 +34,6 @@ const TopBar = ({ pageTitle }) => {
         const { city } = reverseGeocode[0];
         setLocationName(city);
         // sendLocationDataToBackend(location.coords.latitude, location.coords.longitude, city);
-
       } else {
         setLocationName("Unknown Location");
       }
@@ -110,10 +106,10 @@ const TopBar = ({ pageTitle }) => {
       alignItems: 'flex-end',
       paddingLeft: 24,
       paddingRight: 24,
-      paddingBottom: 20,
+      paddingBottom: 16,
       backgroundColor: '#1a1a1a',
       borderRadius: 18,
-      height: 140,
+      height: 120,
       elevation: 3, 
       shadowColor: '#000', 
       shadowOffset: { width: 0, height: 2 }, 
