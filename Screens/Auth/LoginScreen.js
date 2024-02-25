@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   TextInput,
@@ -12,6 +11,8 @@ import {
   Alert,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -23,7 +24,7 @@ const LoginScreen = () => {
     const checkLoginStatus = async () => {
       const token = await AsyncStorage.getItem("token");
       if (token) {
-        //navigation.navigate("MainStack");
+        navigation.navigate("MainStack");
         Alert.alert("You are already logged in");
       }
     };

@@ -9,6 +9,9 @@ const AddVehicleScreen = ({ navigation }) => {
     model: "",
     connectorType: "",
     RegNo: "",
+    charge: "",
+    lastCharged: "",
+    lastUsed: "",
   });
 
   const handleAddVehicle = () => {
@@ -37,11 +40,11 @@ const AddVehicleScreen = ({ navigation }) => {
         style={styles.picker}
         selectedValue={vehicle.connectorType}
         onValueChange={(itemValue, itemIndex) => setVehicle({ ...vehicle, connectorType: itemValue })}>
-        <Picker.Item label="1" value="LEV AC" />
-        <Picker.Item label="2" value="Bharat AC001" />
-        <Picker.Item label="3" value="Type 2 AC" />
-        <Picker.Item label="4" value="Bharat DC 001" />
-        <Picker.Item label="5" value="CCS" />
+        <Picker.Item label="LEV AC" value="LEV AC" />
+        <Picker.Item label="Bharat AC001" value="Bharat AC001" />
+        <Picker.Item label="Type 2 AC" value="Type 2 AC" />
+        <Picker.Item label="Bharat DC 001" value="Bharat DC 001" />
+        <Picker.Item label="CCS" value="CCS" />
       </Picker>
 
       <Button onPress={handleAddVehicle} title="Add Vehicle" />
