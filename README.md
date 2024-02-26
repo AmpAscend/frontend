@@ -30,6 +30,10 @@ This mobile application provides a convenient and intuitive way for users to mon
 <a href="url"><img src="https://github.com/AmpAscend/frontend/assets/72644699/fa2481e6-f519-486e-baa5-6405f99e14df" align="left" height="500"  ></a>
 <a href="url"><img src="https://github.com/AmpAscend/frontend/assets/72644699/55bccbe6-dd9f-44f0-9a23-2a8d71d317b0" align="left" height="500"  ></a>
 
+<br/>
+<br/>
+<br/>
+
 ## Technologies:
 
 - React Native (cross-platform mobile development)
