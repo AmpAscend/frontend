@@ -19,6 +19,16 @@ This mobile application provides a convenient and intuitive way for users to mon
 - Find nearby charging stations based on your current location.
 - View station details (e.g., name, address, type, availability, real-time charging rates).
 - Get directions to the selected station.
+
+## Images:
+https://github.com/AmpAscend/frontend/assets/72644699/ef51fb14-534d-49e7-bc97-409071400a05
+https://github.com/AmpAscend/frontend/assets/72644699/c046b708-eb77-4840-b73f-5c0ba408b5e7
+https://github.com/AmpAscend/frontend/assets/72644699/2a4fc762-4d2e-40f4-aca9-f161e793850b
+https://github.com/AmpAscend/frontend/assets/72644699/dfe2272a-23a0-4409-b3b7-f74c9fd258df
+https://github.com/AmpAscend/frontend/assets/72644699/018c9234-452a-4883-ad3e-948361023c2f
+https://github.com/AmpAscend/frontend/assets/72644699/6ca7ae0e-2002-494b-84bd-f1d6b493d171
+https://github.com/AmpAscend/frontend/assets/72644699/fa2481e6-f519-486e-baa5-6405f99e14df
+https://github.com/AmpAscend/frontend/assets/72644699/55bccbe6-dd9f-44f0-9a23-2a8d71d317b0
 ## Technologies:
 
 - React Native (cross-platform mobile development)
