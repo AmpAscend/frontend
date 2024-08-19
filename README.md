@@ -2,7 +2,7 @@
 
 This mobile application provides a convenient and intuitive way for users to monitor their electric vehicle (EV) charging status, solar energy production, and home energy statistics, while also helping them locate the nearest charging stations.
 
-## Features
+## Features (Concept)
 ### EV Charging:
 - View real-time EV charging status (e.g., battery level, charging rate, estimated completion time).
 - Track historical charging data and analyze trends.
